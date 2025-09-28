@@ -112,6 +112,11 @@ public class Persona {
         return body;
     }
 
+
+    public Persona withId(int newId){
+        return new Persona(newId,pclass,nombre,sex,sibsp,parch,age,ticket,boat,embarked,cabin,fare,body,home_destiny,survived);
+    }
+
     @Override
     public String toString() {
         return "Persona{" +
