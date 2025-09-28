@@ -6,12 +6,12 @@ import java.util.Optional;
 public class Persona {
 
     private int id;
-    private short pclass;
+    private int pclass;
     private String nombre;
     private String sex;
     private Optional<Integer> age;
-    private short sibsp;
-    private short parch;
+    private int sibsp;
+    private int parch;
     private String ticket;
     private double fare;
     private Optional<String> cabin;
@@ -21,7 +21,7 @@ public class Persona {
     private Optional<String> home_destiny;
     private boolean survived;
 
-    public Persona(int id, short pclass, String nombre, String sex, short sibsp, short parch, Optional<Integer> age, String ticket, Optional<Integer> boat, Optional<String> embarked, Optional<String> cabin, double fare, Optional<Integer> body, Optional<String> home_destiny, boolean survived) {
+    public Persona(int id, int pclass, String nombre, String sex, int sibsp, int parch, Optional<Integer> age, String ticket, Optional<Integer> boat, Optional<String> embarked, Optional<String> cabin, double fare, Optional<Integer> body, Optional<String> home_destiny, boolean survived) {
         this.id = id;
         this.pclass = pclass;
         this.nombre = nombre;
@@ -56,7 +56,7 @@ public class Persona {
         return id;
     }
 
-    public short getPclass() {
+    public int getPclass() {
         return pclass;
     }
 
@@ -72,11 +72,11 @@ public class Persona {
         return age;
     }
 
-    public short getSibsp() {
+    public int getSibsp() {
         return sibsp;
     }
 
-    public short getParch() {
+    public int getParch() {
         return parch;
     }
 
