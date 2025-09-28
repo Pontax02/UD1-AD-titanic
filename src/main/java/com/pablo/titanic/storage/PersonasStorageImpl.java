@@ -27,7 +27,7 @@ public class PersonasStorageImpl implements PersonasStorage {
         try {
             return Files.lines(file.toPath()).
                     skip(1)
-                    .map(line -> line.replace(","," ").split(","))
+                    .map(line -> line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1))
                     .map(this::trimArray)
                     .map(this::createPersona)
                     .toList();
@@ -65,17 +65,17 @@ public class PersonasStorageImpl implements PersonasStorage {
                 Integer.parseInt(data[1]),
                 data[2],
                 data[3],
-                Integer.parseInt(data[4]),
+                data[4] == ""?Optional.empty():Optional.of(Double.parseDouble(data[4])),
                 Integer.parseInt(data[5]),
-                Optional.of(Integer.parseInt(data[6])),
+                Integer.parseInt(data[6]),
                 data[7],
-                Optional.of(Integer.parseInt(data[8])),
+                data[8] == ""?Optional.empty():Optional.of(Double.parseDouble(data[8])),
                 Optional.of(data[9]),
                 Optional.of(data[10]),
-                Double.parseDouble(data[11]),
-                Optional.of(Integer.parseInt(data[12])),
+                Optional.of((data[11])),
+                data[12] == ""?Optional.empty():Optional.of(Double.parseDouble(data[12])),
                 Optional.of(data[13]),
-                Boolean.parseBoolean(data[14]));
+                Integer.parseInt(data[14]));
 
     }
 }
