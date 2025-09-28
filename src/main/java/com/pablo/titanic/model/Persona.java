@@ -53,18 +53,18 @@ public class Persona {
         return "Persona{" +
                 "id=" + id +
                 ", pclass=" + pclass +
-                ", nombre='" + nombre + '\'' +
-                ", sex='" + sex + '\'' +
-                ", age=" + age +
+                ", nombre=" + nombre +
+                ", sex=" + sex +
+                ", age=" + age.map(Object::toString).orElse("null") +
                 ", sibsp=" + sibsp +
                 ", parch=" + parch +
-                ", ticket='" + ticket + '\'' +
-                ", fare=" + fare +
-                ", cabin=" + cabin +
-                ", embarked=" + embarked +
-                ", boat=" + boat +
-                ", body=" + body +
-                ", home_destiny=" + home_destiny +
+                ", ticket=" + ticket +
+                ", fare=" + fare.map(Object::toString).orElse("null") +
+                ", cabin=" + cabin.map(Object::toString).orElse("null") +
+                ", embarked=" + embarked.map(Object::toString).orElse("null") +
+                ", boat=" + boat.map(Object::toString).orElse("null") +
+                ", body=" + body.map(Object::toString).orElse("null") +
+                ", home_destiny=" + home_destiny.map(Object::toString).orElse("null") +
                 ", survived=" + survived +
                 '}';
     }
