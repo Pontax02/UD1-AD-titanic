@@ -34,9 +34,16 @@ public class Main {
 
         //¿Cuántos pasajeros en total han sobrevivido?
         System.out.println();
-        System.out.println("¿Cuántos pasajeros en total han sobrevivido?");
+        System.out.println("¿Cuántos pasajeros en total han sobrevivido por cada clase?");
         System.out.println(personas.stream()
-                .filter(p -> p.isSurvived() == 1).count());
+                        .filter(p -> p.isSurvived() == 1)
+                .collect(Collectors.groupingBy(Persona::getPclass,Collectors.counting())));
+
+        System.out.println();
+        System.out.println("Y por genero?");
+        System.out.println(personas.stream()
+                .filter(p -> p.isSurvived() == 1)
+                .collect(Collectors.groupingBy(Persona::getSex,Collectors.counting())));
 
 
         //¿Cuál fue el puerto de embarque más común?
@@ -44,12 +51,12 @@ public class Main {
         System.out.println("¿Cuál fue el puerto de embarque más común?");
 
         System.out.println(personas.stream()
-                        .filter(p -> p.isSurvived() == 1)
+                .filter(p -> p.isSurvived() == 1)
                 .map(Persona::getEmbarked)
-                .collect(Collectors.groupingBy(emb -> emb, Collectors.counting()))
-                .entrySet().stream()
-                .max(Comparator.comparingLong(Map.Entry::getValue))
-                .map(Map.Entry::getKey));
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.groupingBy(emb -> emb, Collectors.counting())));
+
 
 
 
@@ -59,11 +66,10 @@ public class Main {
 
         System.out.println(personas.stream()
                 .filter(p -> p.isSurvived() == 1)
-                .map(Persona::getAge)  // Esto devuelve Stream<Optional<Double>>
+                .map(Persona::getAge)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .map(Double::intValue)
-
                 .filter(p -> p <= 12)
                 .count());
 
