@@ -58,8 +58,8 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     public Persona getById(int id) {
         log.info("Persona con id " + id);
-        Persona producto = repository.getById(id);
-        return producto;
+        Persona persona = repository.getById(id);
+        return persona;
     }
 
 

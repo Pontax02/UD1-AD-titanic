@@ -44,6 +44,7 @@ public class Main {
         System.out.println("¿Cuál fue el puerto de embarque más común?");
 
         System.out.println(personas.stream()
+                        .filter(p -> p.isSurvived() == 1)
                 .map(Persona::getEmbarked)
                 .collect(Collectors.groupingBy(emb -> emb, Collectors.counting()))
                 .entrySet().stream()
@@ -57,16 +58,19 @@ public class Main {
         System.out.println("Cuál fue la tasa de supervivencia de los niños (menores de 12 años)");
 
         System.out.println(personas.stream()
+                .filter(p -> p.isSurvived() == 1)
                 .map(Persona::getAge)  // Esto devuelve Stream<Optional<Double>>
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .map(Double::intValue)
+
                 .filter(p -> p <= 12)
                 .count());
 
         System.out.println();
         System.out.println("Y de los mayores?");
         System.out.println(personas.stream()
+                .filter(p -> p.isSurvived() == 1)
                 .map(Persona::getAge)  // Esto devuelve Stream<Optional<Double>>
                 .filter(Optional::isPresent)
                 .map(Optional::get)
